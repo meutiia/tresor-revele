@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trésor Révélé</title>
+    <style>
+        body {
+            background-color: #f2efef;
+            font-family: Arial;
+        }
+        /* buat background box */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        /* buat frame foto */
+        .profile-img {
+            width: 450px;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- buat munculin title, nama, npm, kelas -->
+        <h1>Tr&eacute;sor R&eacute;v&eacute;l&eacute;</h1>
+        <h5>by {{ name }} ({{ npm }}) - {{ class }}</h5>
+        <!-- masukin url foto -->
+        <img src="https://www.russh.com/wp-content/uploads/2023/08/dh.jpg" alt="Profile Image" class="profile-img">
+    </div>
+</body>
+</html>
