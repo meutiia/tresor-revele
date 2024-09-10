@@ -2,14 +2,16 @@
 link PWS: http://meutia-fajriyah-tresorrevele.pbp.cs.ui.ac.id
 
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-* Instalasi python, django, github, dan virtual environment.
-* Tambahkan requirements, dependencies, dan konfigurasi yang diperlukan untuk melakukan deployment.
-* Membuat project dan aplikasi (main) menggunakan startproject dan startapp.
-* Menambahkan atribut dan property yang diperlukan pada models.py lalu migrasi model untuk update data base menggunakan makemigrations dan migrate.
-* Menambahkan data yang diperlukan pada views.py.
-* Membuat main.html sebagai template tampilan yang akan diberikan.
-* Menghubungkan urls aplikasi dan project.
-* Deployment hasil ke Pacil Web Service (PWS) agar dapat diakses.
+1. Instalasi python, django, github, dan virtual environment.
+2. Buat directory baru dengan nama "tresor-revele" lalu menambahkan requirements, dependencies, dan konfigurasi yang diperlukan untuk melakukan deployment nanti.
+3. Membuat project dan aplikasi (main) menggunakan startproject dan startapp dan menambahkan main ke INSTALLED_APPS.
+4. Menambahkan atribut dan property yang diperlukan pada models.py lalu migrasi model untuk update data base menggunakan makemigrations dan migrate.
+5. Menambahkan data yang diperlukan pada views.py.
+6. Membuat main.html sebagai template tampilan yang akan diberikan.
+7. Menghubungkan urls aplikasi dan project.
+8. Membuat repository baru lalu add, commit, dan push folder "tresor-revele".
+9. Setelah berhasil menghubungkan ke github, deploy project ke Pacil Web Service (PWS) agar dapat diakses dari device lain.
+10. Selesai! Website dapat dibuka melalui [link ini](http://meutia-fajriyah-tresorrevele.pbp.cs.ui.ac.id).
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![Flow Diagram](requestdiagram.jpeg)
