@@ -12,7 +12,7 @@ link PWS: http://meutia-fajriyah-tresorrevele.pbp.cs.ui.ac.id
 * Deployment hasil ke Pacil Web Service (PWS) agar dapat diakses.
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-![Flow Diagram](flowdiagram.jpeg)
+![Flow Diagram](requestdiagram.jpeg)
 * urls.py: untuk memetakan URL yang sesuai dan menghubungkan dengan views (views.py).
 * views.py: logic dari sebuah aplikasi, digunakan untuk mengembalikan data yang sesuai dengan request.
 * models.py: berisi atribut dari tabel di database, untuk mendefinisikan model data aplikasi.
