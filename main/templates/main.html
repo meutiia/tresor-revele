@@ -1,40 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trésor Révélé</title>
-    <style>
-        body {
-            background-color: #f2efef;
-            font-family: Arial;
-        }
-        /* buat background box */
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        /* buat frame foto */
-        .profile-img {
-            width: 450px;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- buat munculin title, nama, npm, kelas -->
-        <h1>Tr&eacute;sor R&eacute;v&eacute;l&eacute;</h1>
-        <h5>by {{ name }} ({{ npm }}) - {{ class }}</h5>
-        <!-- masukin url foto -->
-        <img src="https://www.russh.com/wp-content/uploads/2023/08/dh.jpg" alt="Profile Image" class="profile-img">
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Trésor Révélé</title>
+<style>
+    body {
+        background-color: #f2efef;
+        font-family: Arial;
+    }
+    /* buat background box */
+    .container {
+        max-width: 700px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    /* buat frame foto */
+    .profile-img {
+        width: 450px;
+        height: 250px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+    /* atur ukuran dan font table */
+    table {
+        width: 100%;
+        font-size: 12px;
+        border-collapse: collapse;
+    }
+    table th, table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #dad5d5;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %} 
+<div class="container">
+    <!-- buat munculin title, nama, npm, kelas -->
+    <h1>Tr&eacute;sor R&eacute;v&eacute;l&eacute;</h1>
+    <h5>by {{ name }} ({{ npm }}) - {{ class }}</h5>
+    <!-- masukin url foto -->
+    <img src="https://www.russh.com/wp-content/uploads/2023/08/dh.jpg" alt="Profile Image" class="profile-img">
+
+    {% if not goods_entries %}
+    <p>Sorry, there's no available goods to buy for now!</p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Goods Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Condition</th>
+        </tr>
+
+        {% comment %} Berikut cara memperlihatkan data goods di bawah baris ini 
+        {% endcomment %}
+
+        {% for goods_entry in goods_entries %}
+        <tr>
+            <td>{{goods_entry.name}}</td>
+            <td>{{goods_entry.price}}</td>
+            <td>{{goods_entry.description}}</td>
+            <td>{{goods_entry.category}}</td>
+            <td>{{goods_entry.condition}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <br />
+
+    <a href="{% url 'main:create_goods_entry' %}">
+    <button>Add New Goods Entry</button>
+    </a>
+
+</div>
+{% endblock content %}

@@ -1,6 +1,7 @@
 # Trésor Révélé
 link PWS: http://meutia-fajriyah-tresorrevele.pbp.cs.ui.ac.id
 
+## Tugas 2
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 1. Instalasi python, django, github, dan virtual environment.
 2. Buat directory baru dengan nama "tresor-revele" lalu menambahkan requirements, dependencies, dan konfigurasi yang diperlukan untuk melakukan deployment nanti.
@@ -33,3 +34,24 @@ Django dipilih sebagai framework untuk pemula karena:
 
 ### 5. Mengapa model pada Django disebut sebagai ORM?
 Karena, Django menggunakan teknik ORM atau Object-Relational-Mapping yang mememungkinkan pengembang mengakses database relasional seperti PostgreSQL, MySQL, dan SQLite dengan menggunakan kode python, tanpa perlu menulis query SQL (akses, kelola, manipulasi data) secara manual.
+
+## Tugas 3
+### 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
+### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+### Postman Screenshot
+**URL XML**
+![Request Get XML](postmanscreenshot/xml.jpeg)
+**URL XML by ID**
+![Request Get XML by ID](postmanscreenshot/xmlbyid.jpeg)
+**URL JSON**
+![Request Get JSON](postmanscreenshot/json.jpeg)
+**URL JSON by ID**
+![Request Get JSON by ID](postmanscreenshot/jsonbyid.jpeg)
