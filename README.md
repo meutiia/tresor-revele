@@ -1,7 +1,9 @@
 # Trésor Révélé
 link PWS: http://meutia-fajriyah-tresorrevele.pbp.cs.ui.ac.id
 
-## Tugas 2
+<details>
+<Summary><b>Tugas 2</b></Summary>
+
 ### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 1. Instalasi python, django, github, dan virtual environment.
 2. Buat directory baru dengan nama "tresor-revele" lalu menambahkan requirements, dependencies, dan konfigurasi yang diperlukan untuk melakukan deployment nanti.
@@ -34,8 +36,11 @@ Django dipilih sebagai framework untuk pemula karena:
 
 ### 5. Mengapa model pada Django disebut sebagai ORM?
 Karena, Django menggunakan teknik ORM atau Object-Relational-Mapping yang mememungkinkan pengembang mengakses database relasional seperti PostgreSQL, MySQL, dan SQLite dengan menggunakan kode python, tanpa perlu menulis query SQL (akses, kelola, manipulasi data) secara manual.
+</details>
 
-## Tugas 3
+<details>
+<Summary><b>Tugas 3</b></Summary>
+
 ### 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 Data delivery berguna dalam berjalannya suatu platform. Pada fungsi tertentu, kita akan butuh mengirim dan menerima data dari suatu stack. Biasanya, data delivery dalam pengembangan platform diperlukan untuk mentransfer dari dari server ke client, atau antaraplikasi. Dalam pengimplementasian platform, data delivery memiliki tujuan untuk menyampaikan dan menerima informasi dan memberikan update secara real time.
 
@@ -64,3 +69,44 @@ csrf_token adalah token yang berfungsi sebagai pengaman software. Token ini meru
 ![Request Get JSON](postmanscreenshot/json.jpeg)
 * **URL JSON by ID**
 ![Request Get JSON by ID](postmanscreenshot/jsonbyid.jpeg)
+</details>
+
+<details>
+<Summary><b>Tugas 4</b></Summary>
+
+### 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+* HttpResponseRedirect() : Function untuk mengarahkan user ke URL yang diberikan, menerima URL dalam bentuk string.
+```py
+    ...
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    ...
+```
+* redirect() : Shortcut bawaan Django untuk membuat sebuah object, dapat menerima URL dalam bentuk string, object model, atau URL dari routing.
+```py
+    ...
+    return redirect('main:show_main')
+    ...
+```
+
+### 2. Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan model Product dengan User adalah dengan menggunakan sebuah relationship yaitu ForeignKey, di mana sebuah model pasti akan terhubung dengan seorang user. ForeignKey sendiri adalah relationship di Django yang digunakan untuk mendefinisikan hubungan many-to-one (banyak ke satu) antara dua model. 
+
+### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+* Authentication: proses memastikan atau membuktikan **siapa** yang ingin melakukan aktifitas login
+* Authorization: proses lanjutan setelah authentication berhasil, verifikasi akses **apa** saja yang bisa dilakukan oleh seseorang
+* Apa yang dilakukan saat pengguna login? Setelah dilakukan submit pada login form, program akan melakukan **authentication** dan **authorization**, jika data ditemukan pada database, program akan lanjut untuk membuat session baru.
+* Django mengimplementasikan konsep authentication dengan bantuan built-in framework yang sudah tersedia (django.contrib.auth), sedangkan konsep authorization melalui models dan penggunaan decorator.
+
+### 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django memengingat pengguna yang telah login dengan menggunakan session cookies, saat pengguna login, Django menyimpan sesi pengguna di server dan mengirimkan ID sesi tersebut dalam bentuk cookie ke browser server lalu ketika pengguna mengunjungi website lain, Django akan menggunakan cookie ini untuk mengidentifikasi dan mengingat status login pengguna sebelumnya.
+Kegunaan lain dari cookie adalah penyimpanan preferensi aktivitas pengguna, hal ini bermanfaat untuk memberikan pengalaman browsing yang terpersonalisasi bagi si pengguna kelak. Apakah semua cookies aman digunakan? Jawabannya adalah **tidak**, cookie yang tidak dienkripsi dengan aman dapat menerima serangan CSRF maupun Hijacking dari pihak yang tidak bertanggung jawab. 
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Untuk membuat function registrasi, pertama saya membuat function baru pada views.py yang berguna untuk merender form register, lalu saya juga menambahkan template html yang sesuai, setelah itu saya melakukan routing pada urls dengan import dan menambahkan path pada urlpatterns.
+2. Untuk membuat function login, saya membuat function baru lagi pada views.py untuk authentication user yang akan login, setelah itu saya lanjur membuat template html untuk page login, terakhir, saya melakukan routing pada urls dengan import dan menambahkan path pada urlpatterns.
+3. Selanjutnya saya akan membuat function logout, stepsnya kurang lebih sama seperti saat saya membuat function login. Menambahkan function di views.py, lalu membuat button tambahan di main.html untuk melakukan logout dan mengarahkan user kembali ke halaman login. lalu melakukan routing pada urls dengan import dan menambahkan path pada urlpatterns.
+4. Checklist selanjutnya dapat diimplementasikan dengan melakukan 2 kali register dan menambahkan 3 dummy data pada 2 akun yang berbeda.
+5. Kemudian, untuk menghubungkan model product dengan user, saya perlu menambahkan ForeignKey pada models yang sudah dibuat sebelumnya, setelah melakukan perubahan pada models.py jangan lupa untuk melakukan makemigrations dan migrate.
+6. Terakhir, untuk menampilkan informasi pengguna yang sedang login, saya mengubah function last_login pada views.py agar dapat membuat cookie dan menambahkannya ke response, kemudian pada main.html, saya menambahkan line untuk menampilkan informasi last login di bagian paling bawah halaman utama aplikasi.
+7. Selesai!
+</details>
