@@ -112,7 +112,7 @@ Kegunaan lain dari cookie adalah penyimpanan preferensi aktivitas pengguna, hal 
 </details>
 
 <details>
-<Summary><b>Tugas 4</b></Summary>
+<Summary><b>Tugas 5</b></Summary>
 
 ### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 1. Inline Styles (prioritynya paling tinggi, langsung di-state pada element html)
@@ -147,9 +147,9 @@ div {
 ```
 
 ### 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
-* Flex box
+*
 **Flexbox** digunakan untuk membuat layout yang fleksibel dan responsif secara vertikal atau horizontal, **kegunaannya** adalah untuk mengatur alignment, mengatasi masalah spacing, dan memudahkan pembuatan layout
-* Grid layout
+*
 **Grid layout** merupakan sistem 2D yang membagi halaman web ke dalam baris dan kolom, ini memberi kontrol yang lebih kompleks dari flexbox untuk membuat layout yang lebih terstruktur, **kegunaannya** adalah untuk membuat layout yang kompleks dan menyederhanakan pembuatan grid
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!

@@ -12,14 +12,14 @@
   
     <div class="bg-white shadow-md rounded-lg p-6 form-style">
       <h1 class="text-2xl font-bold text-center mb-6 text-black">Add New Goods</h1>
-      <form method="POST" class="space-y-4"> <!-- Reduced spacing -->
+      <form method="POST" class="space-y-4">
         {% csrf_token %}
         {% for field in form %}
-          <div class="flex items-center space-x-2"> <!-- Reduced space between label and input -->
-            <label for="{{ field.id_for_label }}" class="font-semibold text-gray-700 w-1/4"> <!-- Reduced width -->
+          <div class="flex items-center space-x-2">
+            <label for="{{ field.id_for_label }}" class="font-semibold text-gray-700 w-1/4">
               {{ field.label }}
             </label>
-            <div class="w-3/4"> <!-- Adjusted width -->
+            <div class="w-3/4">
               {{ field }}
             </div>
           </div>
@@ -30,7 +30,7 @@
             <p class="mt-1 text-sm text-red-600">{{ error }}</p>
           {% endfor %}
         {% endfor %}
-        <div class="flex justify-center mt-4"> <!-- Reduced margin -->
+        <div class="flex justify-center mt-4">
           <button type="submit" class="bg-[#85827f] hover:bg-[#615f5d] text-white font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out w-full">
             Add This Beauty!
           </button>
