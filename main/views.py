@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from main.forms import GoodsEntryForm
 from main.models import GoodsEntry
 from django.contrib import messages
@@ -86,3 +86,26 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_goods(request, id):
+    # Get mood entry berdasarkan id
+    goods = GoodsEntry.objects.get(pk = id)
+
+    # Set mood entry sebagai instance dari form
+    form = GoodsEntryForm(request.POST or None, instance=goods)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_goods.html", context)
+
+def delete_goods(request, id):
+    # Get mood berdasarkan id
+    goods = GoodsEntry.objects.get(pk = id)
+    # Hapus mood
+    goods.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))

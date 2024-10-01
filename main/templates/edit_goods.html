@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block meta %}
-<title>Add New Goods</title>
+<title>Edit Goods</title>
 {% endblock meta %}
 
 {% block content %}
 {% include 'navbar.html' %}
-
 <div class="flex flex-col min-h-screen bg-[#EDEAE3]">
   <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
   
     <div class="bg-white shadow-md rounded-lg p-6 form-style">
-      <h1 class="text-2xl font-bold text-center mb-6 text-black">Add New Goods</h1>
+      <h1 class="text-2xl font-bold text-center mb-6 text-black">Edit Goods</h1>
       <form method="POST" class="space-y-4"> <!-- Reduced spacing -->
         {% csrf_token %}
         {% for field in form %}
@@ -32,7 +31,7 @@
         {% endfor %}
         <div class="flex justify-center mt-4"> <!-- Reduced margin -->
           <button type="submit" class="bg-[#85827f] hover:bg-[#615f5d] text-white font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out w-full">
-            Add This Beauty!
+            Edit Goods
           </button>
         </div>
       </form>

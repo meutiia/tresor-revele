@@ -1,0 +1,51 @@
+<div class="relative break-inside-avoid">
+    <!-- Card Container -->
+    <div class="bg-white shadow-lg rounded-lg mb-6 flex flex-col border border-gray-200 max-w-md mx-auto"> <!-- Added max-w-xs and mx-auto -->
+        <!-- Product Image -->
+        <img src="https://i.pinimg.com/736x/f5/e2/75/f5e275a807833cac5ab7e82559be7ebf.jpg" alt="{{ goods_entry.name }}" class="rounded-t-lg object-cover w-full h-40"> <!-- Reduced height -->
+
+        <!-- Product Info -->
+        <div class="p-4 text-center">
+            <h3 class="font-bold text-lg text-gray-800 mb-1">{{ goods_entry.name }}</h3> <!-- Reduced font size -->
+            <p class="text-gray-600 mb-2">
+                <span class="font-medium bg-gray-200 text-[#94908f] py-1 px-2">
+                    {{ goods_entry.category }}
+                </span>
+            </p>
+            <div class="mb-2"> <!-- Optional: add margin for spacing -->
+                <p class="font-semibold text-gray-700">Product Description</p>
+                <p class="text-gray-600">{{ goods_entry.description }}</p>
+            </div>
+
+            <!-- Product Condition -->
+            <div class="mt-4">
+                <div class="flex items-center justify-between">
+                    <!-- Condition Label with Rating -->
+                    <p class="text-gray-700 font-semibold mb-2">Condition</p>
+                    <span class="text-xs font-semibold inline-block py-1 px-2 uppercase text-[#94908f] bg-gray-200">{{ goods_entry.condition }}/10</span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="relative pt-1">
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                        <div class="bg-[#c4c0be] h-full rounded-full" style="width: {% if goods_entry.condition > 10 %}100%{% else %}{{ goods_entry.condition }}0%{% endif %}"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-center">
+                <p class="text-lg text-[#474645] font-bold text-center ml-2">Rp {{ goods_entry.price | floatformat:2 }}</p>
+            </div>
+        </div>
+
+        <!-- Edit & Delete Buttons -->
+        <div class="flex justify-between bg-gray-50 p-2 rounded-b-lg"> <!-- Reduced padding -->
+            <a href="{% url 'main:edit_goods' goods_entry.pk %}" class="text-sm text-[#474645] hover:text-[#A29086]">
+                Edit
+            </a>
+            <a href="{% url 'main:delete_goods' goods_entry.pk %}" class="text-sm text-[#666463] hover:text-red-700">
+                Delete
+            </a>
+        </div>
+    </div>
+</div>

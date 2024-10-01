@@ -110,3 +110,54 @@ Kegunaan lain dari cookie adalah penyimpanan preferensi aktivitas pengguna, hal 
 6. Terakhir, untuk menampilkan informasi pengguna yang sedang login, saya mengubah function last_login pada views.py agar dapat membuat cookie dan menambahkannya ke response, kemudian pada main.html, saya menambahkan line untuk menampilkan informasi last login di bagian paling bawah halaman utama aplikasi.
 7. Selesai!
 </details>
+
+<details>
+<Summary><b>Tugas 4</b></Summary>
+
+### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+1. Inline Styles (prioritynya paling tinggi, langsung di-state pada element html)
+2. ID Selectors (menggunakan ID element, biasanya ditandakan dengan #)
+3. Class, Attribute and Pseudo-Class Selectors (prioritynya di bawah ID selectors, biasanya seperti `.classname`, `[type="text"]`, `:hover`)
+4. Element and Pseudo-Element Selectors (prioritynya paling rendah, seperti tags `div`, `h1`, `p`)
+5. !important Rule (akan mengabaikan aturan lain)
+
+### 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Sebagai pengembang, kita tidak dapat mengontrol dari device mana saja pengguna akan mengakses website kita, maka dari itu, penting untuk memberikan penyesuaian design agar website dapat tampil optimal di berbagai device dengan ukuran layar yang berbeda, seperti smartphone, tablet, laptop, atau desktop. Tanpa responsive design, tampilan website bisa terlihat berantakan dan tidak nyaman digunakan pada perangkat dengan ukuran layar yang berbeda.
+
+Contoh aplikasi yang sudah menerapkan responsive design pada desktop maupun mobile views adalah Shopee, sedangkan yang belum adalah aren.cs.ui.ac.id
+
+### 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+* Margin (ruang di luar border), cara implementasi:
+```css
+div {
+    margin: 20px;
+}
+```
+* Border (garis di sekitar elemen yang mengelilingi padding), cara implementasi:
+```css
+div {
+    border: 2px solid black;
+}
+```
+* Padding (ruang di dalam elemen, antara content dan border), cara implementasi:
+```css
+div {
+    padding: 10px;
+}
+```
+
+### 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+* Flex box
+**Flexbox** digunakan untuk membuat layout yang fleksibel dan responsif secara vertikal atau horizontal, **kegunaannya** adalah untuk mengatur alignment, mengatasi masalah spacing, dan memudahkan pembuatan layout
+* Grid layout
+**Grid layout** merupakan sistem 2D yang membagi halaman web ke dalam baris dan kolom, ini memberi kontrol yang lebih kompleks dari flexbox untuk membuat layout yang lebih terstruktur, **kegunaannya** adalah untuk membuat layout yang kompleks dan menyederhanakan pembuatan grid
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+1. Checklist pertama pada tugas ini adalah menambahkan function edit dan delete products, saya mengimplementasikannya dengan melakukan import dan menambahkan function `edit_goods` dan `delete_goods` pada `views.py`, setelah itu saya juga membuat templates yang sesuai dan melakukan routing pada `urls.py` dengan import dan menambahkan path pada urlpatterns.
+2. Checklist selanjutnya adalah kustomisasi templates html yang sudah dibuat dari tugas-tugas sebelumnya, untuk project ini saya memilih untuk menggunakan framework **Tailwind**.
+* Untuk menambahkan tailwind ke project ini, saya memodifikasi file `base.html` untuk dapat menyambungkan template django ke tailwind serta menyesuaikan adanya perubahan device (mobile).
+* Selanjutnya, tiap templates `login.html`, `register.html`, `main.html`, `create_goods_entry.html`, `edit_goods.html` saya modifikasi sesuai dengan tema aplikasi yang saya inginkan, tiap product yang ada dalam products list nantinya juga akan ditampilkan pada `card_goods.html` beserta models yang dimilikinya.
+* Kemudian, pada setiap card products, saya menambahkan button untuk mengedit dan menghapus entries pada bagian bawah card untuk memudahkan user dalam melakukan penyesuaian.
+* Terakhir, untuk menambahkan navigation bar pada website, kita perlu membuat templates baru dengan nama `navbar.html`, design pada navigation bar dibagi menjadi dua bagian, yaitu untuk desktop dan mobile (dengan burger button), lalu include navbar pada semua page templates yang diinginkan.
+3. Selesai! checklist Tugas 5 sudah terimplementasi dengan lengkap.
+</details>
