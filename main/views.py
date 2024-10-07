@@ -10,16 +10,17 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 
 @login_required(login_url='/login')
 def show_main(request):
-    goods_entries = GoodsEntry.objects.filter(user=request.user)
 
     context = {
         'name' : request.user.username,
         'npm' : '2306165635',
         'class' : 'PBP B',
-        'goods_entries' : goods_entries,
         'last_login': request.COOKIES['last_login'],
     }
 
@@ -38,11 +39,11 @@ def create_goods_entry(request):
     return render(request, "create_goods_entry.html", context)
 
 def show_xml(request):
-    data = GoodsEntry.objects.all()
+    data = GoodsEntry.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = GoodsEntry.objects.all()
+    data = GoodsEntry.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):
@@ -66,20 +67,22 @@ def register(request):
     return render(request, 'register.html', context)
 
 def login_user(request):
-   if request.method == 'POST':
-      form = AuthenticationForm(data=request.POST)
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
 
-      if form.is_valid():
-        user = form.get_user()
-        login(request, user)
-        response = HttpResponseRedirect(reverse("main:show_main"))
-        response.set_cookie('last_login', str(datetime.datetime.now()))
-        return response
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.error(request, "Invalid username or password. Please try again.")
 
-   else:
-      form = AuthenticationForm(request)
-   context = {'form': form}
-   return render(request, 'login.html', context)
+    else:
+        form = AuthenticationForm(request)
+    context = {'form': form}
+    return render(request, 'login.html', context)
 
 def logout_user(request):
     logout(request)
@@ -88,10 +91,10 @@ def logout_user(request):
     return response
 
 def edit_goods(request, id):
-    # Get mood entry berdasarkan id
+    # Get goods entry berdasarkan id
     goods = GoodsEntry.objects.get(pk = id)
 
-    # Set mood entry sebagai instance dari form
+    # Set goods entry sebagai instance dari form
     form = GoodsEntryForm(request.POST or None, instance=goods)
 
     if form.is_valid() and request.method == "POST":
@@ -103,9 +106,28 @@ def edit_goods(request, id):
     return render(request, "edit_goods.html", context)
 
 def delete_goods(request, id):
-    # Get mood berdasarkan id
+    # Get goods berdasarkan id
     goods = GoodsEntry.objects.get(pk = id)
-    # Hapus mood
+    # Hapus goods
     goods.delete()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
+
+@csrf_exempt
+@require_POST
+def add_goods_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    price = strip_tags(request.POST.get("price"))
+    description = strip_tags(request.POST.get("description"))
+    category = strip_tags(request.POST.get("category"))
+    condition = strip_tags(request.POST.get("condition"))
+    user = request.user
+
+    new_goods = GoodsEntry(
+        name=name, price=price, description=description,
+        category=category, condition=condition,
+        user=user
+    )
+    new_goods.save()
+
+    return HttpResponse(b"CREATED", status=201)

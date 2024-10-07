@@ -161,3 +161,42 @@ div {
 * Terakhir, untuk menambahkan navigation bar pada website, kita perlu membuat templates baru dengan nama `navbar.html`, design pada navigation bar dibagi menjadi dua bagian, yaitu untuk desktop dan mobile (dengan burger button), lalu include navbar pada semua page templates yang diinginkan.
 3. Selesai! checklist Tugas 5 sudah terimplementasi dengan lengkap.
 </details>
+
+<details>
+<Summary><b>Tugas 6</b></Summary>
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+* DOM (Document Object Model), pengembang dapat mengubah, mengambil, dan menghapus elements pada HTML dan CSS secara langsung, memungkinkan perubahan tampilan halaman secara real-time
+* Javascript didukung oleh semua browser modern, sehingga kode yang sudah ada dapat berjalan di berbagai platform tanpa perlu penyesuaian tambahan
+* Asynchronous features melalui AJAX (Asynchronous JavaScript And XML), memungkinkan web untuk memperbarui data pada halaman tanpa harus reload keseluruhan
+* Interaktif, JavaScript memungkinkan pengembang untuk membuat elemen interaktif seperti menu dropdown, slider gambar, dan form dinamis yang meningkatkan pengalaman pengguna
+* Memiliki banyak library dan framework yang dapat diakses oleh pengembang untuk meningkatkan efisiensi pembuatan aplikasi web
+
+### 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+`await` adalah function yang digunakan untuk menunggu hasil dari function `async`. Dalam penggunaan `fetch()`, `await` memastikan memastikan bahwa kode berikutnya tidak dijalankan sebelum permintaan HTTP selesai dan data berhasil diterima. Function `await` juga memungkinkan pengimplementasian AJAX tanpa perlu menggunakan library eksternal.
+
+Jika tidak menggunakan `await`, kode akan terus berjalan tanpa menunggu respon dari fetch(), sehingga data yang dibutuhkan mungkin belum tersedia saat digunakan. Ini dapat menyebabkan error atau hasil yang tidak diinginkan karena operasi asynchronous belum selesai.
+
+### 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Decorator `csrf_exempt` dipakai untuk membuat Django tidak perlu mengecek keberadaan `csrf_token` pada POST request yang dikirimkan ke function ini. Penggunaannya pada view AJAX POST diperlukan agar permintaan tidak diblokir oleh perlindungan CSRF Django, ini memungkinkan pengiriman data melalui AJAX tanpa harus menyertakan token CSRF setiap kali. Namun, penggunaan `csrf_exempt` harus dilakukan dengan hati-hati untuk menjaga keamanan website dari serangan CSRF.
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+* Frontend lebih rentan untuk dimanipulasi oleh pihak luar, sehingga pembersihan di frontend saja tidak cukup untuk melindungi aplikasi dari serangan berbahaya seperti SQL Injection atau Cross-Site Scripting (XSS)
+* Web app menerima data dari berbagai sumber (seperti API/third-party-tools), dengan melakukan pembersihan di backend juga, kita dapat memastikan bahwa semua data telah divalidasi dan disanitasi dengan benar sebelum diproses lebih lanjut oleh aplikasi
+* Memudahkan pemeliharaan dan pembaruan kode, karena aturan pembersihan dapat diubah di backend tanpa perlu memperbarui semua klien frontend
+* Perlindungan terhadap berbagai jenis serangan, seperti CSRF dan lainnya, yang membutuhkan validasi di sisi server untuk keamanan yang lebih menyeluruh.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+1. Untuk checklist pertama yaitu implementasi AJAX GET
+* Pertama saya merubah pemanggilan templates `card_goods.html` menjadi permintaan AJAX GET, perubahan tersebut dilakukan dengan menambahkan function `getGoodsEntries` dan `refreshGoodsEntries` pada block `<script>` di `main.html`
+* Untuk memastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in, saya juga menambahkan `filter(user=request.user)` pada data function `show_json` dan `show_xml` di `views.py`
+
+2. Checklist selanjutnya adalah implementasi AJAX POST
+* Pada `main.html` saya menambah button baru dengan nama `Add New Goods Entry by AJAX` yang nantinya akan menampilkan modals yang functionnya sudah dibuat pada block `<script>` di `main.html`
+* Selanjutnya untuk menambahkan product baru, saya menambahkan function `add_goods_entry_ajax` pada `views.py`, function ini menggunakan decorator @csrf_exempt dan @require_POST untuk memastikan keberhasilan jalannya AJAX
+* Setelah membuat function baru, saya melakukan routing pada `urls.py` dengan menambahkan import dan path ke `create_goods_entry_ajax` pada urlpatterns
+* Selanjutnya saya menghubungkan button yang ada pada form modal dengan function add goods yang sudah dibuat dengan cara menambahkan function `addGoodsEntry()` pada block `<script>`, sehingga function tersebut akan dijalankan saat button submit ditekan
+
+3. Selesai! checklist tugas 6 sudah terimplementasi.
+
+</details>
