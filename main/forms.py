@@ -10,10 +10,6 @@ class GoodsEntryForm(ModelForm):
     def clean_name(self):
         name = self.cleaned_data["name"]
         return strip_tags(name)
-
-    def clean_price(self):
-        price = self.cleaned_data["price"]
-        return strip_tags(price)
     
     def clean_description(self):
         description = self.cleaned_data["description"]
@@ -22,7 +18,3 @@ class GoodsEntryForm(ModelForm):
     def clean_category(self):
         category = self.cleaned_data["category"]
         return strip_tags(category)
-    
-    def clean_condition(self):
-        condition = self.cleaned_data["condition"]
-        return strip_tags(condition)

@@ -117,10 +117,10 @@ def delete_goods(request, id):
 @require_POST
 def add_goods_entry_ajax(request):
     name = strip_tags(request.POST.get("name"))
-    price = strip_tags(request.POST.get("price"))
+    price = request.POST.get("price")
     description = strip_tags(request.POST.get("description"))
     category = strip_tags(request.POST.get("category"))
-    condition = strip_tags(request.POST.get("condition"))
+    condition = request.POST.get("condition")
     user = request.user
 
     new_goods = GoodsEntry(
